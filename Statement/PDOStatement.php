@@ -116,6 +116,8 @@ class PDOStatement implements StatementInterface
      * Fetches the next row from a result set
      *
      * @param integer|null $type
+     * @param string       $class
+     * @param array        $classConstructor
      * @return mixed
     */
     public function fetch($type = null, $class = null, array $classConstructor = array())
@@ -131,6 +133,8 @@ class PDOStatement implements StatementInterface
      * Returns an array containing all of the result set rows
      *
      * @param integer|null $type
+     * @param string       $class
+     * @param array        $classConstructor
      * @return mixed
     */
     public function fetchAll($type = null, $class = null, array $classConstructor = array())
@@ -145,7 +149,7 @@ class PDOStatement implements StatementInterface
     /**
      * Set the default fetch mode for this statement
      *
-     * @param integer    $type
+     * @param integer     $type
      * @param string|null $param2
      * @param array       $param3
     */

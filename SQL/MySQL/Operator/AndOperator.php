@@ -9,22 +9,10 @@
 
 namespace Attw\DB\SQL\MySQL\Operator;
 
-use Attw\DB\SQL\AbstractOperator;
-use \LogicException;
+use Attw\DB\SQL\MySQL\Operator\AbstractOperatorThatAcceptArray;
 
-class AndOperator extends AbstractOperator
+class AndOperator extends AbstractOperatorThatAcceptArray
 {
     const OPERATOR = 'AND';
-
-    private $a = array();
-
-    public function __construct(array $a)
-    {
-        $this->a = $a;
-    }
-
-    protected function constructSql()
-    {
-        $this->sql = implode(' AND ', $this->a);
-    }
+    protected $operator = 'AND';
 }

@@ -35,7 +35,9 @@ class MySQLiConnector implements ConnectorInterface
     {
         $this->mysqli = new mysqli($host, $user, $pass, $db, $port, $socket);
 
-        $this->verifyException();
+        if ($this->mysqli->connect_error) {
+            ConnectionException::mysqliError($this->mysqli->connect_error, $this->mysqli->connect_errno);
+        }
     }
 
     /**

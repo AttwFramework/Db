@@ -19,7 +19,7 @@ use Attw\DB\Exception\StorageException;
  * Interface for storage with entites
 */
 class EntityStorage implements EntityStorageInterface
-    {
+{
     /**
      * Storage instance
      *
@@ -43,13 +43,7 @@ class EntityStorage implements EntityStorageInterface
     public function find(AbstractEntity $entity)
     {
         $primaryKey = $entity->getPrimaryKey();
-        $where = null;
-
-        foreach ($primaryKey as $key => $value) {
-            if (is_null($value) || $value == '' || $value == ' ') {
-                throw new \RuntimeException(sprintf('The primary key "%s" must not be null', $key));
-            }
-        }
+        $this->hasPrimaryKey($primaryKey);
 
         $stmt = $this->storage->read($entity->getTable())->where($primaryKey);
         $stmt->setFetchMode(StatementFetch::FETCH_CLASS, get_class($entity), array());
@@ -128,16 +122,19 @@ class EntityStorage implements EntityStorageInterface
     public function remove(AbstractEntity $entity)
     {
         $primaryKey = $entity->getPrimaryKey();
-        $where = null;
-
-        foreach ($primaryKey as $key => $value) {
-            if (is_null($value) || $value == '' || $value == ' ') {
-                throw new \RuntimeException(sprintf('The primary key "%s" must not be null', $key));
-            }
-        }
+        $this->hasPrimaryKey($primaryKey);
 
         $stmt = $this->storage->remove($entity->getTable(), $primaryKey);
 
         return $stmt->execute();
     }
+
+    private function hasPrimaryKey(array $primaryKey)
+    {
+        foreach ($primaryKey as $key => $value) {
+            if (is_null($value) || $value == '' || $value == ' ') {
+                throw new \RuntimeException(sprintf('The primary key "%s" must not be null', $key));
+            }
+        }
     }
+}

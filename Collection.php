@@ -58,7 +58,7 @@ class Collection
      * Attach a connector to colletion
      *
      * @param string $key identification to connection
-     * @param \Attw\DB\Connection\Connector\Config\ConnectorInterface $connector
+     * @param \Attw\DB\Connection\ConnectorInterface $connector
      * @throws \RuntimeException case param $key already exists
     */
     public function add($key, ConnectorInterface $connector)
@@ -89,9 +89,8 @@ class Collection
      * Get a connection from collection by identification key
      *
      * @param string $key identification to connection
-     * @return \Attw\DB\Connection\Connector\Config\ConnectorInterface
+     * @return \Attw\DB\Connection\ConnectorInterface
      * @throws \RuntimeException case param $key do not exists
-     * @return instanceof Attw\DB\Connection\Connector\Config\ConnectorInterface
     */
     public function get($key)
     {

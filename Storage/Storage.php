@@ -62,9 +62,7 @@ class Storage implements StorageInterface
 
         $stmt = $this->connector->getStatement($sql);
 
-        foreach ($dataValues as $key => $value) {
-            $stmt->bindParam($key + 1, $value);
-        }
+        $stmt = $this->bindAllParams($stmt, $dataValues);
 
         return $stmt;
     }
@@ -88,9 +86,7 @@ class Storage implements StorageInterface
 
         $stmt = $this->connector->getStatement($sql);
 
-        foreach ($whereValues as $key => $value) {
-            $stmt->bindParam($key + 1, $value);
-        }
+        $stmt = $this->bindAllParams($stmt, $whereValues);
 
         return $stmt;
     }
@@ -119,13 +115,8 @@ class Storage implements StorageInterface
 
         $stmt = $this->connector->getStatement($sql);
 
-        foreach ($data as $column => $value) {
-            $stmt->bindParam($column . '_data', $value);
-        }
-
-        foreach ($where as $column => $value) {
-            $stmt->bindParam($column . '_where', $value);
-        }
+        $stmt = $this->bindAllParams($stmt, $data, '_data');
+        $stmt = $this->bindAllParams($stmt, $where, '_where');
 
         return $stmt;
     }
@@ -141,5 +132,20 @@ class Storage implements StorageInterface
         $query = new StorageSelect($this->connector, $this->sqlGenerator);
 
         return $query->create($container, $data);
+    }
+
+    /**
+     * @param \Attw\DB\Statement\StatementInterface $stmt
+     * @param array                                 $params
+     * @param string|null                           $prefix
+     * @return \Attw\DB\Statement\StatementInterface
+    */
+    private function bindAllParams($stmt, array $params, $prefix = null)
+    {
+        foreach ($params as $key => $value) {
+            (is_null($prefix)) ? $stmt->bindParam($key + 1, $value) : $stmt->bindParam($key . $prefix, $value);
+        }
+
+        return $stmt;
     }
 }

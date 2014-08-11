@@ -9,35 +9,10 @@
 
 namespace Attw\DB\SQL\MySQL\Operator;
 
-use Attw\DB\SQL\AbstractOperator;
-use \LogicException;
+use Attw\DB\SQL\MySQL\Operator\AbstractOperatorThatAcceptArray;
 
-class OrOperator extends AbstractOperator
+class OrOperator extends AbstractOperatorThatAcceptArray
 {
     const OPERATOR = 'OR';
-
-    private $a;
-    private $b;
-
-    public function __construct($a, $b = null)
-    {
-        $this->a = $a;
-        $this->b = $b;
-    }
-
-    protected function constructSql()
-    {
-        $a = $this->a;
-        $b = $this->b;
-
-        if (is_array($a)) {
-            $this->sql = implode(' OR ', $a);
-        } else {
-        if (!is_null($b)) {
-            $this->sql = sprintf('%s OR %s', $a, $b);
-        } else {
-            throw new LogicException('If the first argument is\'t an array, second argument must not be null');
-        }
-        }
-    }
+    protected $operator = 'OR';
 }

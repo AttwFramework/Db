@@ -36,7 +36,7 @@ class Insert extends AbstractStatement
     /**
      * Values to insert
      *
-     * @var string generated with DB\SQL\MySQL\Clause\Values
+     * @var \Attw\DB\SQL\MySQL\Clause\Values
     */
     private $values;
 
@@ -55,7 +55,6 @@ class Insert extends AbstractStatement
         }
 
         $values = array_values($data);
-        $columns = array_keys($data);
 
         $this->table = $table;
 

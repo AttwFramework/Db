@@ -9,10 +9,10 @@
 
 namespace Attw\DB\SQL;
 
-    /**
-     * Interface to SQL Operators
-     * (And, Or, Like, Equal etc.)
-    */
+/**
+ * Interface to SQL Operators
+ * (And, Or, Like, Equal etc.)
+*/
 abstract class AbstractOperator extends AbstractComponent
 {
 }

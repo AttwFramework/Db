@@ -29,7 +29,7 @@ class MySQLiStatement implements StatementInterface
     /**
      * Prepared statement
      *
-     * @var \mysql_stmt
+     * @var \mysqli_stmt
     */
     private $stmt;
 
@@ -156,7 +156,7 @@ class MySQLiStatement implements StatementInterface
         $this->verifyMySQLiErrorsAndThrowException();
 
         if (!$this->stmt->execute()) {
-            StatementException::mysqliStmtError($this->stmt->error, $this->stmt->code);
+            StatementException::mysqliStmtError($this->stmt->error, $this->stmt->errno);
         }
 
         $this->result = $this->stmt->get_result();
@@ -173,7 +173,7 @@ class MySQLiStatement implements StatementInterface
         if (!call_user_func_array(array($this->stmt, 'bind_param'), 
             $this->refValues(array_merge(array($typesString), $this->bindParam, $params)))
         ) {
-            StatementException::mysqliError($this->stmt->error, $this->stmt->code);
+            StatementException::mysqliError($this->stmt->error, $this->stmt->errno);
         }
     }
 
@@ -230,8 +230,8 @@ class MySQLiStatement implements StatementInterface
         switch ($type) {
             case null:
                 if (is_null($this->standartFetchMode) || count($this->standartFetchMode) == 0 || !isset($this->standartFetchMode['type'])) {
-                    while ($r = $result->fetch_array()) {
-                        $this->results[] = $r;
+                    while ($r = $this->result->fetch_array()) {
+                        $results[] = $r;
                     }
                 } else {
                     $results = (isset($this->standartFetchMode['param2'])) ? $this->fetchAll(

@@ -23,14 +23,14 @@ class Delete extends AbstractStatement
     /**
      * Table to delete some registries
      *
-     * @var string
+     * @var \Attw\DB\SQL\MySQL\Clause\From
     */
     private $table;
 
     /**
      * Where clause to indicate some registry
      *
-     * @var string|array
+     * @var \Attw\DB\SQL\MySQL\Clause\Where
     */
     private $where;
 

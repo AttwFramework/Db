@@ -9,19 +9,10 @@
 
 namespace Attw\DB\SQL\MySQL\Operator;
 
-use Attw\DB\SQL\AbstractOperator;
+use Attw\DB\SQL\MySQL\Operator\AbstractOperatorQuotes;
 
-class SimpleQuotes extends AbstractOperator
+class SimpleQuotes extends AbstractOperatorQuotes
 {
-    private $a;
-
-    public function __construct($a)
-    {
-        $this->a = $a;
-    }
-
-    protected function constructSql()
-    {
-        $this->sql = sprintf('\'%s\'', $this->a);
-    }
+	const OPERATOR = "'";
+	protected $operator = "'";
 }

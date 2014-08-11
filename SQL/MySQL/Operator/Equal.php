@@ -9,23 +9,10 @@
 
 namespace Attw\DB\SQL\MySQL\Operator;
 
-use Attw\DB\SQL\AbstractOperator;
+use Attw\DB\SQL\MySQL\Operator\AbstractOperatorForTwoValues;
 
-class Equal extends AbstractOperator
+class Equal extends AbstractOperatorForTwoValues
 {
     const OPERATOR = '=';
-
-    private $a;
-    private $b;
-
-    public function __construct($a, $b)
-    {
-        $this->a = $a;
-        $this->b = $b;
-    }
-
-    protected function constructSql()
-    {
-        $this->sql = sprintf('%s = %s', $this->a, $this->b);
-    }
+    protected $operator = '=';
 }
