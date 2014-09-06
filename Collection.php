@@ -63,10 +63,7 @@ class Collection
     */
     public function add($key, ConnectorInterface $connector)
     {
-        if ($this->connections->offsetExists($key)) {
-            throw new RuntimeException('This connection have already added: ' . print_r($key, true));
-        }
-
+        $this->throwAnExceptionIfConnectionDoesNotExists($key);
         $this->connections->offsetSet($key, $connector);
     }
 
@@ -78,10 +75,7 @@ class Collection
     */
     public function remove($key)
     {
-        if (!$this->connections->offsetExists($key)) {
-            throw new RuntimeException('This connection doesn\'t exists: ' . print_r($key, true));
-        }
-
+        $this->throwAnExceptionIfConnectionDoesNotExists($key);
         $this->connections->offsetUnset($key);
     }
 
@@ -110,5 +104,12 @@ class Collection
     public function exists($key)
     {
         return $this->connections->offsetExists($key);
+    }
+
+    private function throwAnExceptionIfConnectionDoesNotExists($key)
+    {
+        if (!$this->exists($key)) {
+            throw new RuntimeException('This connection doesn\'t exists: ' . print_r($key, true));
+        }
     }
 }

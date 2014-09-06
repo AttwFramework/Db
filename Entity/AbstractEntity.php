@@ -24,7 +24,7 @@ abstract class AbstractEntity
      *
      * @var array
     */
-    private $fields = array();
+    protected $fields = array();
 
     /**
      * Constructor to entity

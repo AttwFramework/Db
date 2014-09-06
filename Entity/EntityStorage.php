@@ -94,7 +94,7 @@ class EntityStorage implements EntityStorageInterface
 
                     foreach ($columns as $column => $value) {
                         if (is_null($value) || $column === $primaryKeyColumn) {
-                        unset($columns[ $column ]);
+                            unset($columns[ $column ]);
                         }
                     }
 
