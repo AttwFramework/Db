@@ -52,17 +52,14 @@ class Storage implements StorageInterface
     public function create($container, array $data)
     {
         $dataVars = array();
-        $dataValues = array_values($data);
 
         foreach ($data as $column => $value) {
             $dataVars[ $column ] = '?';
         }
 
         $sql = $this->sqlGenerator->insert($container, $dataVars, false);
-
         $stmt = $this->connector->getStatement($sql);
-
-        $stmt = $this->bindAllParams($stmt, $dataValues);
+        $stmt = $this->bindAllParams($stmt, array_values($data));
 
         return $stmt;
     }
@@ -76,17 +73,14 @@ class Storage implements StorageInterface
     public function remove($container, array $where)
     {
         $whereVars = array();
-        $whereValues = array_values($where);
 
         foreach ($where as $column => $value) {
             $whereVars[] = sprintf('`%s` = ?', $column);
         }
 
         $sql = $this->sqlGenerator->delete($container, implode(' AND ', $whereVars));
-
         $stmt = $this->connector->getStatement($sql);
-
-        $stmt = $this->bindAllParams($stmt, $whereValues);
+        $stmt = $this->bindAllParams($stmt, array_values($where));
 
         return $stmt;
     }

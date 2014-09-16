@@ -29,7 +29,7 @@ class MySQL implements SQLGenerator
      * Create a select statement
      *
      * @param string                   $container
-     * @param array|string             $columns
+     * @param string|array             $columns
      * @return \Attw\DB\SQL\MySQL\Statement\Select
     */
     public function select($container, $columns = '*')
@@ -41,7 +41,7 @@ class MySQL implements SQLGenerator
      * Create a insert statement
      *
      * @param string                   $container
-     * @param array                $data
+     * @param array                    $data
      * @param boolean                  $columnsWithQutoes
      * @return \Attw\DB\SQL\MySQL\Statement\Insert
     */
@@ -54,7 +54,7 @@ class MySQL implements SQLGenerator
      * Create a update statement
      *
      * @param string                   $container
-     * @param array                $data
+     * @param array                    $data
      * @param array|string             $where
      * @return \Attw\DB\SQL\MySQL\Statement\Update
     */

@@ -122,11 +122,7 @@ class PDOStatement implements StatementInterface
     */
     public function fetch($type = null, $class = null, array $classConstructor = array())
     {
-        try {
-            return is_null($class) ? $this->stmt->fetch($type) : $this->stmt->fetch($type, $class, $classConstructor);
-        } catch (PDOException $e) {
-            StatementException::pdoStmtError($e->getMessage(), $e->getCode());
-        } 
+        $this->fetcheMethods('fetch', $type, $class, $classConstructor);
     }
 
     /**
@@ -139,8 +135,13 @@ class PDOStatement implements StatementInterface
     */
     public function fetchAll($type = null, $class = null, array $classConstructor = array())
     {
+        $this->fetcheMethods('fetchAll', $type, $class, $classConstructor);
+    }
+
+    private function fetcheMethods($method, $type = null, $class = null, array $classConstructor = array())
+    {
         try {
-            return is_null($class) ? $this->stmt->fetchAll($type) : $this->stmt->fetchAll($type, $class, $classConstructor);
+            return is_null($class) ? $this->stmt->{$method}($type) : $this->stmt->{$method}($type, $class, $classConstructor);
         } catch (PDOException $e) {
             StatementException::pdoStmtError($e->getMessage(), $e->getCode());
         }
@@ -150,18 +151,13 @@ class PDOStatement implements StatementInterface
      * Set the default fetch mode for this statement
      *
      * @param integer     $type
-     * @param string|null $param2
-     * @param array       $param3
+     * @param string|null $secondParam
+     * @param array       $thirdParam
     */
-    public function setFetchMode($type, $param2 = null, array $param3 = array())
+    public function setFetchMode($type, $secondParam = null, array $thirdParam = array())
     {
         try {
-            if (is_null($param2)) {
-                return $this->stmt->setFetchMode($type);
-            } elseif (count($param3) == 0) {
-                return $this->stmt->setFetchMode($type, $param2);
-            }
-            return $this->stmt->setFetchMode($type, $param2, $param3);
+            return $this->stmt->setFetchMode($type, $secondParam, $thirdParam);
         } catch (PDOException $e) {
             StatementException::pdoStmtError($e->getMessage(), $e->getCode());
         }

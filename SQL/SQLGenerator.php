@@ -19,7 +19,7 @@ interface SQLGenerator
      * Generate a SQL to select
      *
      * @param string $container also met as table
-     * @param string | array $columns columns to fetch
+     * @param string|array $columns columns to fetch
     */
     public function select($container, $columns = '*');
 
@@ -36,7 +36,7 @@ interface SQLGenerator
      *
      * @param string $container also met as table
      * @param array $data data to set
-     * @param string | array $where
+     * @param string|array $where
     */
     public function update($container, array $data, $where);
 
@@ -44,7 +44,7 @@ interface SQLGenerator
      * Generate a SQL to delete
      *
      * @param string $container also met as table
-     * @param string | array $where
+     * @param string|array $where
     */
     public function delete($container, $where);
 }
