@@ -72,7 +72,6 @@ class Select
     public function create($container, $data = '*')
     {
         $this->sql = $this->sqlGenerator->select($container, $data);
-        $this->stmt = $this->connector->getStatement($this->sql);
 
         return $this;
     }
@@ -96,7 +95,6 @@ class Select
         }
 
         $this->sql = $this->sql->where($where);
-        $this->stmt = $this->connector->getStatement($this->sql);
         $this->execAllBindParams();
 
         return $this;
@@ -110,7 +108,6 @@ class Select
     public function groupBy($groupBy)
     {
         $this->sql = $this->sql->groupBy($groupBy);
-        $this->stmt = $this->connector->getStatement($this->sql);
         $this->execAllBindParams();
 
         return $this;
@@ -125,7 +122,6 @@ class Select
     public function orderBy($orderBy, $type)
     {
         $this->sql = $this->sql->orderBy($orderBy, $type);
-        $this->stmt = $this->connector->getStatement($this->sql);
         $this->execAllBindParams();
 
         return $this;
@@ -168,6 +164,8 @@ class Select
     */
     public function __call($method, $args)
     {
+        $this->stmt = $this->connector->getStatement($this->sql);
+        
         if (!method_exists($this, $method)) {
             if (!method_exists($this->stmt, $method)) {
                 throw new \Exception('Method not found: ');
