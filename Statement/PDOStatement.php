@@ -46,13 +46,6 @@ class PDOStatement implements StatementInterface
     private $paramsToBindParam = array();
 
     /**
-     * @var boolean
-    */
-    private $execute;
-
-    private $executeParams;
-
-    /**
      * @param \PDO   $pdo
      * @param string $sql
     */
