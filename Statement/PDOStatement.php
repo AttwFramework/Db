@@ -106,7 +106,7 @@ class PDOStatement implements StatementInterface
                 $this->stmt->bindParam($param['var'], $param['value'], $param['type'], $param['length']);
             }
 
-            count($this->executeParams) > 0 ? $this->stmt->execute($this->executeParams) : $this->stmt->execute();
+            count($parameters) > 0 ? $this->stmt->execute($parameters) : $this->stmt->execute();
         } catch (PDOException $e) {
             StatementException::pdoStmtError($e->getMessage(), $e->getCode());
         }
