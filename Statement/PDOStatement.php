@@ -46,13 +46,20 @@ class PDOStatement implements StatementInterface
     private $paramsToBindParam = array();
 
     /**
+     * @var boolean
+    */
+    private $execute;
+
+    private $executeParams;
+
+    /**
      * @param \PDO   $pdo
      * @param string $sql
     */
     public function __construct(PDO $pdo, $sql)
     {
         $this->pdo = $pdo;
-        $this->stmt = $this->pdo->prepare($sql);
+        $this->stmt = $this->pdo->prepare(trim($sql));
     }
 
     /**
@@ -106,7 +113,7 @@ class PDOStatement implements StatementInterface
                 $this->stmt->bindParam($param['var'], $param['value'], $param['type'], $param['length']);
             }
 
-            return (count($parameters) > 1) ? $this->stmt->execute($parameters) : $this->stmt->execute();
+            count($this->executeParams) > 0 ? $this->stmt->execute($this->executeParams) : $this->stmt->execute();
         } catch (PDOException $e) {
             StatementException::pdoStmtError($e->getMessage(), $e->getCode());
         }
@@ -122,7 +129,7 @@ class PDOStatement implements StatementInterface
     */
     public function fetch($type = null, $class = null, array $classConstructor = array())
     {
-        $this->fetcheMethods('fetch', $type, $class, $classConstructor);
+        return $this->fetchMethods('fetch', $type, $class, $classConstructor);
     }
 
     /**
@@ -135,10 +142,10 @@ class PDOStatement implements StatementInterface
     */
     public function fetchAll($type = null, $class = null, array $classConstructor = array())
     {
-        $this->fetcheMethods('fetchAll', $type, $class, $classConstructor);
+        return $this->fetchMethods('fetchAll', $type, $class, $classConstructor);
     }
 
-    private function fetcheMethods($method, $type = null, $class = null, array $classConstructor = array())
+    private function fetchMethods($method, $type = null, $class = null, array $classConstructor = array())
     {
         try {
             return is_null($class) ? $this->stmt->{$method}($type) : $this->stmt->{$method}($type, $class, $classConstructor);

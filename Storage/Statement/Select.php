@@ -72,7 +72,7 @@ class Select
     public function create($container, $data = '*')
     {
         $this->sql = $this->sqlGenerator->select($container, $data);
-
+        $this->defineStmt($this->sql);
         return $this;
     }
 
@@ -95,6 +95,7 @@ class Select
         }
 
         $this->sql = $this->sql->where($where);
+        $this->defineStmt($this->sql);
         $this->execAllBindParams();
 
         return $this;
@@ -108,6 +109,7 @@ class Select
     public function groupBy($groupBy)
     {
         $this->sql = $this->sql->groupBy($groupBy);
+        $this->defineStmt($this->sql);
         $this->execAllBindParams();
 
         return $this;
@@ -122,6 +124,7 @@ class Select
     public function orderBy($orderBy, $type)
     {
         $this->sql = $this->sql->orderBy($orderBy, $type);
+        $this->defineStmt($this->sql);
         $this->execAllBindParams();
 
         return $this;
@@ -135,7 +138,7 @@ class Select
     public function offset($offset)
     {
         $this->sql = $this->sql->offset($offset);
-        $this->stmt = $this->connector->getStatement($this->sql);
+        $this->defineStmt($this->sql);
         $this->execAllBindParams();
 
         return $this;
@@ -153,10 +156,15 @@ class Select
         $limit = (is_null($limit)) ? $offset : $limit;
 
         $this->sql = $this->sql->limit($offset, $limit);
-        $this->stmt = $this->connector->getStatement($this->sql);
+        $this->defineStmt($this->sql);
         $this->execAllBindParams();
 
         return $this;
+    }
+
+    private function defineStmt($sql)
+    {
+        $this->stmt = $this->connector->getStatement($sql);
     }
 
     /**
@@ -164,11 +172,9 @@ class Select
     */
     public function __call($method, $args)
     {
-        $this->stmt = $this->connector->getStatement($this->sql);
-        
         if (!method_exists($this, $method)) {
             if (!method_exists($this->stmt, $method)) {
-                throw new \Exception('Method not found: ');
+                throw new \Exception('Method not found: ' . $method);
             }
 
             return call_user_func_array(array($this->stmt, $method), $args);

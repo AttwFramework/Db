@@ -29,6 +29,8 @@ class Collection
     */
     private static $instance;
 
+    private $count;
+
     /**
      * Collection with user database connections
      *
@@ -63,7 +65,7 @@ class Collection
     */
     public function add($key, ConnectorInterface $connector)
     {
-        $this->throwAnExceptionIfConnectionDoesNotExists($key);
+        
         $this->connections->offsetSet($key, $connector);
     }
 
