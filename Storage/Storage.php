@@ -58,10 +58,7 @@ class Storage implements StorageInterface
         }
 
         $sql = $this->sqlGenerator->insert($container, $dataVars, false);
-        $stmt = $this->connector->getStatement($sql);
-        $stmt = $this->bindAllParams($stmt, array_values($data));
-
-        return $stmt;
+        return $this->method($sql, $data);
     }
 
     /**
@@ -79,10 +76,7 @@ class Storage implements StorageInterface
         }
 
         $sql = $this->sqlGenerator->delete($container, implode(' AND ', $whereVars));
-        $stmt = $this->connector->getStatement($sql);
-        $stmt = $this->bindAllParams($stmt, array_values($where));
-
-        return $stmt;
+        return $this->method($sql, $where);
     }
 
     /**
@@ -140,6 +134,13 @@ class Storage implements StorageInterface
             (is_null($prefix)) ? $stmt->bindParam($key + 1, $value) : $stmt->bindParam($key . $prefix, $value);
         }
 
+        return $stmt;
+    }
+
+    private function method($sql, array $data)
+    {
+        $stmt = $this->connector->getStatement($sql);
+        $stmt = $this->bindAllParams($stmt, array_values($data));
         return $stmt;
     }
 }

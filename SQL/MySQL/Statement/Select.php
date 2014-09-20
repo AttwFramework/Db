@@ -9,7 +9,7 @@
 
 namespace Attw\DB\SQL\MySQL\Statement;
 
-use Attw\DB\SQL\AbstractStatement;
+use Attw\DB\SQL\MySQL\Statement\AbstractStatementWithWhere;
 use Attw\DB\SQL\MySQL\Operator\AndOperator;
 use Attw\DB\SQL\MySQL\Operator\AsOperator;
 use Attw\DB\SQL\MySQL\Operator\OrOperator;
@@ -23,12 +23,11 @@ use Attw\DB\SQL\MySQL\Clause\OrderBy;
 use Attw\DB\SQL\MySQL\Clause\Where;
 use Attw\DB\SQL\MySQL\Clause\On;
 
-class Select extends AbstractStatement
+class Select extends AbstractStatementWithWhere
 {
     private $columns;
     private $from;
     private $join;
-    private $where;
     private $groupBy = array();
     private $orderBy = array();
     private $offset;
@@ -66,16 +65,7 @@ class Select extends AbstractStatement
 
     public function where($where)
     {
-        if (is_array($where)) {
-            $equals = array();
-            foreach ($where as $column => $value) {
-                $equals[] = new Equal($column, $value);
-            }
-
-            $this->where = new Where(new AndOperator($equals));
-        } else {
-            $this->where = new Where($where);
-        }
+        $this->constructWhere($where);
 
         return $this;
     }

@@ -9,7 +9,7 @@
 
 namespace Attw\DB\SQL\MySQL\Statement;
 
-use Attw\DB\SQL\AbstractStatement;
+use Attw\DB\SQL\MySQL\Statement\AbstractStatementWithWhere;
 use Attw\DB\SQL\MySQL\Clause\Set;
 use Attw\DB\SQL\MySQL\Clause\Where;
 use Attw\DB\SQL\MySQL\Operator\Equal;
@@ -19,7 +19,7 @@ use \InvalidArgumentException;
 /**
  * MySQL SQL Update statement
 */
-class Update extends AbstractStatement
+class Update extends AbstractStatementWithWhere
 {
     /**
      * Table to update some registries
@@ -28,7 +28,6 @@ class Update extends AbstractStatement
     */
     private $table;
     private $set;
-    private $where;
 
     /**
      * Constructor to update statement
@@ -61,25 +60,6 @@ class Update extends AbstractStatement
         }
 
         $this->set = new Set(implode(', ', $equals));
-    }
-
-    /**
-     * Construct the where clause
-     *
-     * @param string | array $where
-    */
-    private function constructWhere($where)
-    {
-        if (is_array($where)) {
-        $equals = array();
-        foreach ($where as $column => $value) {
-            $equals[] = new Equal($column, $value);
-        }
-
-        $this->where = new Where(new AndOperator($equals));
-        } else {
-        $this->where = new Where($where);
-        }
     }
 
     /**
