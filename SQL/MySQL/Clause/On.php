@@ -7,9 +7,9 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\SQL\MySQL\Clause;
+namespace Attw\Db\Sql\MySQL\Clause;
 
-use Attw\DB\SQL\AbstractClause;
+use Attw\Db\Sql\AbstractClause;
 
 class On extends AbstractClause
 {
@@ -25,10 +25,10 @@ class On extends AbstractClause
         if (is_array($this->columns)) {
             $columnsArr = array();
             foreach ($this->columns as $column1 => $column2) {
-                $columnsArr[] = new \Attw\DB\SQL\MySQL\Operator\Equal($column1, $column2);
+                $columnsArr[] = new \Attw\Db\Sql\MySQL\Operator\Equal($column1, $column2);
             }
 
-            $this->sql = sprintf('ON (%s)', new \Attw\DB\SQL\MySQL\Operator\AndO($columnsArr));
+            $this->sql = sprintf('ON (%s)', new \Attw\Db\Sql\MySQL\Operator\AndO($columnsArr));
         } else {
             $this->sql = sprintf('ON (%s)', $this->columns);
         }

@@ -7,12 +7,12 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\Storage;
+namespace Attw\Db\Storage;
 
-use Attw\DB\Storage\StorageInterface;
-use Attw\DB\Connection\ConnectorInterface;
-use Attw\DB\SQL\SQLGenerator;
-use Attw\DB\Storage\Statement\Select as StorageSelect;
+use Attw\Db\Storage\StorageInterface;
+use Attw\Db\Connection\ConnectorInterface;
+use Attw\Db\Sql\SQLGenerator;
+use Attw\Db\Storage\Statement\Select as StorageSelect;
 
 /**
  * Storage class for relational databases
@@ -22,20 +22,20 @@ class Storage implements StorageInterface
     /**
      * Connector instance
      *
-     * @var \Attw\DB\Connection\ConnectorInterface
+     * @var \Attw\Db\Connection\ConnectorInterface
     */
     private $connector;
 
     /**
      * SQL generator
      *
-     * @var \Attw\DB\SQL\SQLGenerator
+     * @var \Attw\Db\Sql\SQLGenerator
     */
     private $sqlGenerator;
 
     /**
-     * @param \Attw\DB\Connection\ConnectorInterface $connector
-     * @param \Attw\DB\SQL\SQLGenerator          $sql
+     * @param \Attw\Db\Connection\ConnectorInterface $connector
+     * @param \Attw\Db\Sql\SQLGenerator          $sql
     */
     public function __construct(ConnectorInterface $connector, SQLGenerator $sql)
     {
@@ -123,10 +123,10 @@ class Storage implements StorageInterface
     }
 
     /**
-     * @param \Attw\DB\Statement\StatementInterface $stmt
+     * @param \Attw\Db\Statement\StatementInterface $stmt
      * @param array                                 $params
      * @param string|null                           $prefix
-     * @return \Attw\DB\Statement\StatementInterface
+     * @return \Attw\Db\Statement\StatementInterface
     */
     private function bindAllParams($stmt, array $params, $prefix = null)
     {

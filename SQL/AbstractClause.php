@@ -7,7 +7,7 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\SQL;
+namespace Attw\Db\Sql;
 
 /**
  * Interface to SQL Clauses

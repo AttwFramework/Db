@@ -7,10 +7,10 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\Connection;
+namespace Attw\Db\Connection;
 
-use Attw\DB\Connection\ConnectorInterface;
-use Attw\DB\Statement\PDOStatement;
+use Attw\Db\Connection\ConnectorInterface;
+use Attw\Db\Statement\PDOStatement;
 use \PDO;
 use \PDOException;
 

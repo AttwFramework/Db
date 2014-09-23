@@ -7,12 +7,12 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\Statement;
+namespace Attw\Db\Statement;
 
-use Attw\DB\Statement\StatementInterface;
-use Attw\DB\Exception\StatementException;
-use Attw\DB\Statement\StatementFetch as Fetch;
-use Attw\DB\Statement\ParamTypes as Param;
+use Attw\Db\Statement\StatementInterface;
+use Attw\Db\Exception\StatementException;
+use Attw\Db\Statement\StatementFetch as Fetch;
+use Attw\Db\Statement\ParamTypes as Param;
 use \mysqli;
 use \PDO;
 use \ReflectionClass;

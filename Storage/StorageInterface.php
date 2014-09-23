@@ -7,7 +7,7 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\Storage;
+namespace Attw\Db\Storage;
 
 /**
  * Interface for database storage

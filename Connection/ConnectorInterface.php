@@ -7,7 +7,7 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\Connection;
+namespace Attw\Db\Connection;
 
 interface ConnectorInterface
 {

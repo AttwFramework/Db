@@ -7,7 +7,7 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\Exception;
+namespace Attw\Db\Exception;
 
 use \Exception;
 

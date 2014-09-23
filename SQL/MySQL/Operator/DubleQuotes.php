@@ -7,9 +7,9 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\SQL\MySQL\Operator;
+namespace Attw\Db\Sql\MySQL\Operator;
 
-use Attw\DB\SQL\MySQL\Operator\AbstractOperatorQuotes;
+use Attw\Db\Sql\MySQL\Operator\AbstractOperatorQuotes;
 
 class DubleQuotes extends AbstractOperatorQuotes
 {

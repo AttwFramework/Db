@@ -7,10 +7,10 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\SQL\MySQL\Clause;
+namespace Attw\Db\Sql\MySQL\Clause;
 
-use Attw\DB\SQL\AbstractClause;
-use Attw\DB\SQL\MySQL\Clause\JoinType;
+use Attw\Db\Sql\AbstractClause;
+use Attw\Db\Sql\MySQL\Clause\JoinType;
 
 class Join extends AbstractClause
 {

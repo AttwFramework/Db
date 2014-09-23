@@ -7,11 +7,11 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\Connection;
+namespace Attw\Db\Connection;
 
-use Attw\DB\Connection\ConnectorInterface;
-use Attw\DB\Statement\MySQLiStatement;
-use Attw\DB\Exception\ConnectionException;
+use Attw\Db\Connection\ConnectorInterface;
+use Attw\Db\Statement\MySQLiStatement;
+use Attw\Db\Exception\ConnectionException;
 use \mysqli;
 
 class MySQLiConnector implements ConnectorInterface
@@ -112,7 +112,7 @@ class MySQLiConnector implements ConnectorInterface
      * Returns statement class
      *
      * @param string  $sql
-     * @return \Attw\DB\Statement\MySQLiStatement
+     * @return \Attw\Db\Statement\MySQLiStatement
     */
     public function getStatement($sql)
     {

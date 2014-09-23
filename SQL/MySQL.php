@@ -7,13 +7,13 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\SQL;
+namespace Attw\Db\Sql;
 
-use Attw\DB\SQL\SQLGenerator;
-use Attw\DB\SQL\MySQL\Statement\Select;
-use Attw\DB\SQL\MySQL\Statement\Insert;
-use Attw\DB\SQL\MySQL\Statement\Update;
-use Attw\DB\SQL\MySQL\Statement\Delete;
+use Attw\Db\Sql\SQLGenerator;
+use Attw\Db\Sql\MySQL\Statement\Select;
+use Attw\Db\Sql\MySQL\Statement\Insert;
+use Attw\Db\Sql\MySQL\Statement\Update;
+use Attw\Db\Sql\MySQL\Statement\Delete;
 
 /**
  * Adapter to MySQL Statements
@@ -30,7 +30,7 @@ class MySQL implements SQLGenerator
      *
      * @param string                   $container
      * @param string|array             $columns
-     * @return \Attw\DB\SQL\MySQL\Statement\Select
+     * @return \Attw\Db\Sql\MySQL\Statement\Select
     */
     public function select($container, $columns = '*')
     {
@@ -43,7 +43,7 @@ class MySQL implements SQLGenerator
      * @param string                   $container
      * @param array                    $data
      * @param boolean                  $columnsWithQutoes
-     * @return \Attw\DB\SQL\MySQL\Statement\Insert
+     * @return \Attw\Db\Sql\MySQL\Statement\Insert
     */
     public function insert($container, array $data, $columnsWithQutoes = true)
     {
@@ -56,7 +56,7 @@ class MySQL implements SQLGenerator
      * @param string                   $container
      * @param array                    $data
      * @param array|string             $where
-     * @return \Attw\DB\SQL\MySQL\Statement\Update
+     * @return \Attw\Db\Sql\MySQL\Statement\Update
     */
     public function update($container, array $data, $where)
     {
@@ -68,7 +68,7 @@ class MySQL implements SQLGenerator
      *
      * @param string                   $container
      * @param array|string             $where
-     * @return \Attw\DB\SQL\MySQL\Statement\Delete
+     * @return \Attw\Db\Sql\MySQL\Statement\Delete
     */
     public function delete($container, $where)
     {

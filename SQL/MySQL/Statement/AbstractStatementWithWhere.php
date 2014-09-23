@@ -7,9 +7,10 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\SQL\MySQL\Statement;
+namespace Attw\Db\Sql\MySQL\Statement;
 
-use Attw\DB\SQL\MySQL\Clause\Where;
+use Attw\Db\Sql\MySQL\Clause\Where;
+use Attw\Db\Sql\AbstractStatement;
 
 abstract class AbstractStatementWithWhere extends AbstractStatement
 {

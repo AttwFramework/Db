@@ -7,12 +7,12 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\SQL\MySQL\Statement;
+namespace Attw\Db\Sql\MySQL\Statement;
 
-use Attw\DB\SQL\MySQL\Statement\AbstractStatementWithWhere;
-use Attw\DB\SQL\MySQL\Operator\Equal;
-use Attw\DB\SQL\MySQL\Operator\AndOperator;
-use Attw\DB\SQL\MySQL\Clause\From;
+use Attw\Db\Sql\MySQL\Statement\AbstractStatementWithWhere;
+use Attw\Db\Sql\MySQL\Operator\Equal;
+use Attw\Db\Sql\MySQL\Operator\AndOperator;
+use Attw\Db\Sql\MySQL\Clause\From;
 
 /**
  * MySQL SQL Delete statement
@@ -22,7 +22,7 @@ class Delete extends AbstractStatementWithWhere
     /**
      * Table to delete some registries
      *
-     * @var \Attw\DB\SQL\MySQL\Clause\From
+     * @var \Attw\Db\Sql\MySQL\Clause\From
     */
     private $table;
 

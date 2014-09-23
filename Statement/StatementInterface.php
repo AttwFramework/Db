@@ -7,7 +7,7 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\Statement;
+namespace Attw\Db\Statement;
 
 interface StatementInterface
 {

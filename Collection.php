@@ -7,9 +7,9 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB;
+namespace Attw\Db;
 
-use Attw\DB\Connection\ConnectorInterface;
+use Attw\Db\Connection\ConnectorInterface;
 use \RuntimeException;
 use \ArrayObject;
 
@@ -18,14 +18,14 @@ use \ArrayObject;
  *
  * @example
  *  To add a connection:
- *  Attw\DB\Collection::getInstance()->add('Conn1', new PDOConnector($connector_configs));
+ *  Attw\Db\Collection::getInstance()->add('Conn1', new PDOConnector($connector_configs));
 */
 class Collection
 {
     /**
      * Instance for singleton
      *
-     * @var \Attw\DB\Collection
+     * @var \Attw\Db\Collection
     */
     private static $instance;
 
@@ -60,7 +60,7 @@ class Collection
      * Attach a connector to colletion
      *
      * @param string $key identification to connection
-     * @param \Attw\DB\Connection\ConnectorInterface $connector
+     * @param \Attw\Db\Connection\ConnectorInterface $connector
      * @throws \RuntimeException case param $key already exists
     */
     public function add($key, ConnectorInterface $connector)
@@ -85,7 +85,7 @@ class Collection
      * Get a connection from collection by identification key
      *
      * @param string $key identification to connection
-     * @return \Attw\DB\Connection\ConnectorInterface
+     * @return \Attw\Db\Connection\ConnectorInterface
      * @throws \RuntimeException case param $key do not exists
     */
     public function get($key)

@@ -7,7 +7,7 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\Entity;
+namespace Attw\Db\Entity;
 
 use \RuntimeException;
 use \ReflectionProperty;

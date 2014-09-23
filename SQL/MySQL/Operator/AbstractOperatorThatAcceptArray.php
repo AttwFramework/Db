@@ -1,7 +1,7 @@
 <?php
-namespace Attw\DB\SQL\MySQL\Operator;
+namespace Attw\Db\Sql\MySQL\Operator;
 
-use Attw\DB\SQL\MySQL\Operator\AbstractOperatorForTwoValues;
+use Attw\Db\Sql\MySQL\Operator\AbstractOperatorForTwoValues;
 
 abstract class AbstractOperatorThatAcceptArray extends AbstractOperatorForTwoValues
 {

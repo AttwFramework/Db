@@ -7,10 +7,10 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\Storage\Statement;
+namespace Attw\Db\Storage\Statement;
 
-use Attw\DB\Connection\ConnectorInterface;
-use Attw\DB\SQL\SQLGenerator;
+use Attw\Db\Connection\ConnectorInterface;
+use Attw\Db\Sql\SQLGenerator;
 
 /**
  * Select SQL statement
@@ -20,14 +20,14 @@ class Select
     /**
      * Connector instance
      *
-     * @var \Attw\DB\Connection\ConnectorInterface
+     * @var \Attw\Db\Connection\ConnectorInterface
     */
     private $connector;
 
     /**
      * SQL generator instance
      *
-     * @var \Attw\DB\SQL\SQLGenerator
+     * @var \Attw\Db\Sql\SQLGenerator
     */
     private $sqlGenerator;
 
@@ -53,7 +53,7 @@ class Select
     private $parameters = array();
 
     /**
-     * @param \Attw\DB\Connection\ConnectorInterface $connector
+     * @param \Attw\Db\Connection\ConnectorInterface $connector
      * @param string                 $container
      * @param array|string               $data
     */

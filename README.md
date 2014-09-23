@@ -26,15 +26,15 @@ Database component of [AttwFramework](https://github.com/attwframework/framework
 ###Connecting with a relational database
 Create an object to be the connector, passing the instance of connector configurations in the constructor
 ```php
-use Attw\DB\Connection\PDOConnector;
+use Attw\Db\Connection\PDOConnector;
 
 $connector = new PDOConnector('mysql:host=localhost;dbname=test', 'root', 'pass');
 ```
 Connections collection
 ```php
-use Attw\DB\Connection\Connector\Config\MySQLConnectionConfig;
-use Attw\DB\Connection\PDOConnector;
-use Attw\DB\Collection as DBCollection;
+use Attw\Db\Connection\Connector\Config\MySQLConnectionConfig;
+use Attw\Db\Connection\PDOConnector;
+use Attw\Db\Collection as DBCollection;
 
 $connector = new PDOConnector('mysql:host=localhost;dbname=test', 'root', 'pass');
 
@@ -42,13 +42,13 @@ $connections = DBCollection::getInstance();
 $connections->add('ConnectionName', $connector);
 ```
 The default methods of a connector are:
-* ```Attw\DB\Connection\ConnectorInterface::getConnection()``` Returns the connection
-* ```Attw\DB\Connection\ConnectorInterface::getDriver()``` Returns the connected driver
-* ```Attw\DB\Connection\ConnectorInterface::query($sql)``` Execute a SQL query
-* ```Attw\DB\Connection\ConnectorInterface::prepare($sql)``` Prepares a statement for execution and returns a statement object
-* ```Attw\DB\Connection\ConnectorInterface::exec($sql)``` Execute an SQL statement and return the number of affected rows
-* ```Attw\DB\Connection\ConnectorInterface::lastInsertId([ string $name ])``` Returns the ID of the last inserted row or sequence value
-* ```Attw\DB\Connection\ConnectorInterface::getStatement( $sql )``` Returns statement class
+* ```Attw\Db\Connection\ConnectorInterface::getConnection()``` Returns the connection
+* ```Attw\Db\Connection\ConnectorInterface::getDriver()``` Returns the connected driver
+* ```Attw\Db\Connection\ConnectorInterface::query($sql)``` Execute a SQL query
+* ```Attw\Db\Connection\ConnectorInterface::prepare($sql)``` Prepares a statement for execution and returns a statement object
+* ```Attw\Db\Connection\ConnectorInterface::exec($sql)``` Execute an SQL statement and return the number of affected rows
+* ```Attw\Db\Connection\ConnectorInterface::lastInsertId([ string $name ])``` Returns the ID of the last inserted row or sequence value
+* ```Attw\Db\Connection\ConnectorInterface::getStatement( $sql )``` Returns statement class
 
 ###Storage methods
 Methods useds for interaction with database
@@ -56,9 +56,9 @@ Methods useds for interaction with database
 Crud:
 ####Inserting something
 ```php
-use Attw\DB\Connection\PDOConnector;
-use Attw\DB\Storage\Storage;
-use Attw\DB\SQL\MySQL;
+use Attw\Db\Connection\PDOConnector;
+use Attw\Db\Storage\Storage;
+use Attw\Db\Sql\MySQL;
 
 $connector = new PDOConnector('mysql:host=localhost;dbname=test', 'root', 'pass');
 $storage = new Storage($connector, new MySQL());
@@ -97,9 +97,9 @@ $connector->query("DELETE FROM `users` WHERE `id` = '20'");
 ```
 ####Prepared statements
 ```php
-use Attw\DB\Connection\PDOConnector;
-use Attw\DB\Storage\Storage;
-use Attw\DB\SQL\MySQL;
+use Attw\Db\Connection\PDOConnector;
+use Attw\Db\Storage\Storage;
+use Attw\Db\Sql\MySQL;
 
 $connector = new PDOConnector('mysql:host=localhost;dbname=test', 'root', 'pass');
 
@@ -109,9 +109,9 @@ $userData = $stmt->fetch();
 ```
 ###Entities
 Entities are classes that represent tables.
-To create an entity, create a class that extends ```Attw\DB\Storage\Entity\AbstractEntity```.
+To create an entity, create a class that extends ```Attw\Db\Storage\Entity\AbstractEntity```.
 ```php
-use Attw\DB\Storage\Entity\AbstractEntity;
+use Attw\Db\Storage\Entity\AbstractEntity;
 
 class User extends AbstractEntity
 {
@@ -131,10 +131,10 @@ If you indicate the primary key and it exists, an update will be make.
 
 **Insert**
 ```php
-use Attw\DB\Connection\PDOConnector;
-use Attw\DB\Storage\Storage;
-use Attw\DB\SQL\MySQL;
-use Attw\DB\Entity\EntityStorage;
+use Attw\Db\Connection\PDOConnector;
+use Attw\Db\Storage\Storage;
+use Attw\Db\Sql\MySQL;
+use Attw\Db\Entity\EntityStorage;
 
 $connector = new PDOConnector('mysql:host=localhost;dbname=test', 'root', 'pass');
 $storage = new Storage($connector, new MySQL());

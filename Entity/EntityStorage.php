@@ -7,13 +7,13 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\Entity;
+namespace Attw\Db\Entity;
 
-use Attw\DB\Entity\AbstractEntity;
-use Attw\DB\Entity\EntityStorageInterface;
-use Attw\DB\Storage\StorageInterface;
-use Attw\DB\Statement\StatementFetch;
-use Attw\DB\Exception\StorageException;
+use Attw\Db\Entity\AbstractEntity;
+use Attw\Db\Entity\EntityStorageInterface;
+use Attw\Db\Storage\StorageInterface;
+use Attw\Db\Statement\StatementFetch;
+use Attw\Db\Exception\StorageException;
 
 /**
  * Interface for storage with entites
@@ -23,12 +23,12 @@ class EntityStorage implements EntityStorageInterface
     /**
      * Storage instance
      *
-     * @var \Attw\DB\Storage\StorageInterface
+     * @var \Attw\Db\Storage\StorageInterface
     */
     private $storage;
 
     /**
-     * @param \Attw\DB\Storage\StorageInterface $storage
+     * @param \Attw\Db\Storage\StorageInterface $storage
     */
     public function __construct(StorageInterface $storage)
     {
@@ -38,7 +38,7 @@ class EntityStorage implements EntityStorageInterface
     /**
      * Find for some registry in database
      *
-     * @param \Attw\DB\Entity\AbstractEntity $entity
+     * @param \Attw\Db\Entity\AbstractEntity $entity
     */
     public function find(AbstractEntity $entity)
     {
@@ -55,7 +55,7 @@ class EntityStorage implements EntityStorageInterface
     /**
      * Find all registries in database
      *
-     * @param \Attw\DB\Entity\AbstractEntity $entity
+     * @param \Attw\Db\Entity\AbstractEntity $entity
      * @return array
     */
     public function findAll(AbstractEntity $entity)
@@ -71,7 +71,7 @@ class EntityStorage implements EntityStorageInterface
      * Persist some registry on database
      * If registry exists, update
      *
-     * @param \Attw\DB\Entity\AbstractEntity $entity
+     * @param \Attw\Db\Entity\AbstractEntity $entity
     */
     public function persist(AbstractEntity $entity)
     {
@@ -117,7 +117,7 @@ class EntityStorage implements EntityStorageInterface
     /**
      * Delete some registry
      *
-     * @param \Attw\DB\Entity\AbstractEntity $entity
+     * @param \Attw\Db\Entity\AbstractEntity $entity
     */
     public function remove(AbstractEntity $entity)
     {

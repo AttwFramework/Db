@@ -7,13 +7,13 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\Statement;
+namespace Attw\Db\Statement;
 
-use Attw\DB\Statement\StatementInterface;
+use Attw\Db\Statement\StatementInterface;
 use \PDO;
 use \Exception;
 use \PDOException;
-use Attw\DB\Exception\StatementException;
+use Attw\Db\Exception\StatementException;
 
 class PDOStatement implements StatementInterface
 {
@@ -27,7 +27,7 @@ class PDOStatement implements StatementInterface
     /**
      * Prepared statement
      *
-     * @var \Attw\DB\Connection\ConnectorInterface::prepare()
+     * @var \Attw\Db\Connection\ConnectorInterface::prepare()
     */
     private $stmt;
 

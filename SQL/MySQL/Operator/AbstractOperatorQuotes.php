@@ -1,7 +1,7 @@
 <?php
-namespace Attw\DB\SQL\MySQL\Operator;
+namespace Attw\Db\Sql\MySQL\Operator;
 
-use Attw\DB\SQL\AbstractOperator;
+use Attw\Db\Sql\AbstractOperator;
 
 abstract class AbstractOperatorQuotes extends AbstractOperator
 {

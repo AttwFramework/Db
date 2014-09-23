@@ -7,11 +7,11 @@
  * @link http://attwframework.github.io
 */
 
-namespace Attw\DB\SQL\MySQL\Statement;
+namespace Attw\Db\Sql\MySQL\Statement;
 
-use Attw\DB\SQL\AbstractStatement;
-use Attw\DB\SQL\MySQL\Clause\Values;
-use Attw\DB\SQL\MySQL\Operator\SimpleQuote;
+use Attw\Db\Sql\AbstractStatement;
+use Attw\Db\Sql\MySQL\Clause\Values;
+use Attw\Db\Sql\MySQL\Operator\SimpleQuote;
 use \InvalidArgumentException;
 
 /**
@@ -36,7 +36,7 @@ class Insert extends AbstractStatement
     /**
      * Values to insert
      *
-     * @var \Attw\DB\SQL\MySQL\Clause\Values
+     * @var \Attw\Db\Sql\MySQL\Clause\Values
     */
     private $values;
 
