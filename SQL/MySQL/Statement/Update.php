@@ -34,7 +34,7 @@ class Update extends AbstractStatementWithWhere
      *
      * @param string $table
      * @param array $data data to update
-     * @param string | array $where
+     * @param string|array $where
     */
     public function __construct($table, array $data, $where)
     {

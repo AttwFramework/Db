@@ -4,13 +4,12 @@ DB
 
 Database component of [AttwFramework](https://github.com/attwframework/framework).
 
-##Composer autoload
+##Composer
+###Download
 ```json
 {
-    "autoload": {
-    "psr-4": {
-        "Attw\File\\": "vendor/attwframework/db/"
-    }
+    "require": {
+        "attwframework/db": "dev-master"
     }
 }
 ```
