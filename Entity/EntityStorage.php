@@ -103,43 +103,36 @@ class EntityStorage implements EntityStorageInterface
     */
     public function persist(AbstractEntity $entity)
     {
-        $primaryKey = $entity->getPrimaryKey();
+        $primaryKey = $entity->{$entity->getPrimaryKey()};
         $columns = $entity->getColumns();
         $primaryKeyColumn = null;
 
-        if (count($primaryKey) > 0) {
-            foreach ($primaryKey as $key => $value) {
-                if (!is_null($value) || $value != '' || !$value != ' ') {
-                    $primaryKeyColumn = $key;
+        if ($primaryKey !== null) {
+            $where = $this->constructWhere($entity);
+            $stmt = $this->storage->read($entity->getTable())->where($where);
+            $stmt->execute();
+            $total = $stmt->rowCount();
 
-                    $stmt = $this->storage->read($entity->getTable())->where($primaryKey);
-                    $stmt->execute();
-                    $total = $stmt->rowCount();
+            if ($total == 0) {
+                throw new StorageException('If primary key is not null, it must exists');
+            }
 
-                    if ($total == 0) {
-                        throw new StorageException('If primary key is not null, it must exists');
-                    }
-
-                    foreach ($columns as $column => $value) {
-                        if (is_null($value) || $column === $primaryKeyColumn) {
-                            unset($columns[ $column ]);
-                        }
-                    }
-
-                    return $this->storage->update($entity->getTable(), $columns, $primaryKey)
-                                 ->execute();
+            foreach ($columns as $column => $value) {
+                if (is_null($value) || $column === $entity->getPrimaryKey()) {
+                    unset($columns[$column]);
                 }
             }
+
+            return $this->storage->update($entity->getTable(), $columns, $where)->execute();
         }
 
         foreach ($columns as $column => $value) {
-            if ($column === $primaryKeyColumn) {
-                unset($columns[ $column ]);
+            if ($column === $entity->getPrimaryKey()) {
+                unset($columns[$column]);
             }
         }
 
-        return $this->storage->create($entity->getTable(), $columns)
-                 ->execute();
+        return $this->storage->create($entity->getTable(), $columns)->execute();
     }
 
     /**

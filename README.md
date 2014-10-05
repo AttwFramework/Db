@@ -125,7 +125,7 @@ class User extends AbstractEntity
         'entities' => array(
             'category' => 'Your\Namespace\Entity\Category'
         ),
-        'datetime' => arrat(
+        'datetime' => array(
             'created_at',
             'updated_at'
         )
@@ -161,8 +161,7 @@ $entityStorage->persist($user);
 ```
 **Update**
 ```php
-$user = new User();
-$user->id = 17; //primary key indicates which registry
+$user = new User(17);//Id on contructor
 $user->email = 'other@email.com';
 
 $entityStorage->persist($user);
