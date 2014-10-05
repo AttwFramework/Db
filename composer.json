@@ -1,0 +1,23 @@
+{
+    "name": "attwframework/db",
+    "description": "Database component of AttwFramework",
+    "authors": [
+    {
+        "name": "Gabriel Jacinto",
+        "email": "gamjj74@hotmail.com",
+        "homepage": "http://gabrieljmj.github.io"
+    }
+    ],
+    "license": "MIT",
+    "homepage": "http://attwframework.github.io",
+    "type": "library",
+    "keywords": ["framework-component"],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Attw\\Db\\": "/"
+        }
+    }
+}
