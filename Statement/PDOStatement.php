@@ -93,7 +93,7 @@ class PDOStatement implements StatementInterface
      * Execute the prepared statement
      *
      * @param array    $parameters
-     * @return boolean
+     * @return \Attw\Db\Statement\PDOStatement
     */
     public function execute(array $parameters = array())
     {

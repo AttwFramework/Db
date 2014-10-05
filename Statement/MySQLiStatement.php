@@ -145,7 +145,7 @@ class MySQLiStatement implements StatementInterface
      * Execute the prepared statement
      *
      * @param array    $parameters
-     * @return boolean
+     * @return \Attw\Db\Statement\MySQLiStatement
     */
     public function execute(array $parameters = array())
     {
