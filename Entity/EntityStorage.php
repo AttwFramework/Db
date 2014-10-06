@@ -105,7 +105,6 @@ class EntityStorage implements EntityStorageInterface
     {
         $primaryKey = $entity->{$entity->getPrimaryKey()};
         $columns = $entity->getColumns();
-        $primaryKeyColumn = null;
 
         if ($primaryKey !== null) {
             $where = $this->constructWhere($entity);
